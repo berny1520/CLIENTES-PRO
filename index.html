@@ -1,407 +1,569 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CRM Minero PRO | Captación de Clientes</title>
-<style>
-:root{
-  --bg:#0f172a; --card:#1e293b; --line:#334155; --txt:#e2e8f0;
-  --muted:#94a3b8; --cyan:#38bdf8; --green:#22c55e; --amber:#f59e0b; --red:#ef4444;
-}
-*{box-sizing:border-box}
-body{
-  margin:0; font-family:Segoe UI, Arial, sans-serif; background:linear-gradient(135deg,#0f172a,#111827);
-  color:var(--txt);
-}
-.wrap{max-width:1400px; margin:auto; padding:24px;}
-.hero{
-  display:flex; justify-content:space-between; gap:16px; align-items:center;
-  background:linear-gradient(135deg,#0b1220,#1e293b); border:1px solid var(--line);
-  border-radius:18px; padding:20px; margin-bottom:20px;
-}
-.hero h1{margin:0; font-size:30px;}
-.hero p{margin:6px 0 0; color:var(--muted);}
-.badge{
-  padding:10px 14px; border-radius:999px; background:rgba(56,189,248,.12);
-  border:1px solid rgba(56,189,248,.35); color:var(--cyan); font-weight:700;
-}
-.grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;}
-.card{
-  background:rgba(30,41,59,.92); border:1px solid var(--line); border-radius:18px; padding:18px;
-}
-h2{margin:0 0 14px 0; font-size:20px}
-.form-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
-.full{grid-column:1/-1;}
-label{font-size:12px; color:var(--muted); display:block; margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em;}
-input,select,textarea{
-  width:100%; padding:11px 12px; border-radius:12px; border:1px solid #475569;
-  background:#0b1220; color:var(--txt); outline:none;
-}
-textarea{min-height:90px; resize:vertical}
-.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-button{
-  border:0; border-radius:12px; padding:12px 14px; font-weight:700; cursor:pointer;
-}
-.btn-primary{background:var(--green); color:white}
-.btn-secondary{background:var(--cyan); color:#082f49}
-.btn-dark{background:#0b1220; color:var(--txt); border:1px solid var(--line)}
-.btn-warning{background:var(--amber); color:#111827}
-.kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:14px}
-.kpi{
-  background:#0b1220; border:1px solid var(--line); border-radius:14px; padding:14px;
-}
-.kpi small{color:var(--muted); display:block; margin-bottom:6px;}
-.kpi strong{font-size:24px}
-.toolbar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px}
-.table-wrap{overflow:auto; border:1px solid var(--line); border-radius:14px}
-table{width:100%; border-collapse:collapse; min-width:980px}
-th,td{padding:10px 12px; border-bottom:1px solid #334155; font-size:13px; text-align:left}
-th{background:#0b1220; color:var(--cyan); position:sticky; top:0}
-.status-pill{
-  display:inline-block; padding:5px 9px; border-radius:999px; font-weight:700; font-size:12px;
-}
-.s-prospecto{background:#1d4ed8;color:#dbeafe}
-.s-contactado{background:#7c3aed;color:#ede9fe}
-.s-reunion{background:#0f766e;color:#ccfbf1}
-.s-propuesta{background:#92400e;color:#fef3c7}
-.s-negociacion{background:#be123c;color:#ffe4e6}
-.s-ganado{background:#166534;color:#dcfce7}
-.s-perdido{background:#991b1b;color:#fee2e2}
-.note{font-size:12px;color:var(--muted);line-height:1.5}
-@media (max-width: 1024px){
-  .grid{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM Comercial - ImpulsoWork Training</title>
+  <style>
+    :root{
+      --azul:#0f172a;
+      --azul-2:#1e293b;
+      --azul-3:#334155;
+      --dorado:#d4a328;
+      --dorado-2:#f3c85b;
+      --fondo:#f8fafc;
+      --texto:#0f172a;
+      --blanco:#ffffff;
+      --borde:#dbe3ee;
+      --exito:#15803d;
+      --alerta:#b45309;
+      --peligro:#b91c1c;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(135deg,#eef2f7 0%,#f8fafc 50%,#edf2f7 100%);
+      color:var(--texto);
+    }
+    .wrap{
+      max-width:1400px;
+      margin:0 auto;
+      padding:24px;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:24px;
+      background:linear-gradient(135deg,var(--azul) 0%, #172554 100%);
+      border-radius:24px;
+      padding:28px;
+      color:var(--blanco);
+      box-shadow:0 18px 40px rgba(15,23,42,.18);
+    }
+    .brand{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:220px;
+    }
+    .brand img{
+      width:100%;
+      max-width:250px;
+      border-radius:14px;
+      object-fit:contain;
+      background:#fff;
+      padding:14px;
+    }
+    .hero h1{
+      margin:0 0 10px 0;
+      font-size:36px;
+      line-height:1.1;
+    }
+    .hero p{
+      margin:0;
+      color:#e2e8f0;
+      font-size:16px;
+      max-width:760px;
+    }
+    .hero .pillbox{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pill{
+      background:rgba(243,200,91,.14);
+      color:#fde68a;
+      border:1px solid rgba(243,200,91,.28);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:420px 1fr;
+      gap:24px;
+      margin-top:24px;
+      align-items:start;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--borde);
+      border-radius:22px;
+      box-shadow:0 12px 28px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    .card-head{
+      padding:18px 22px;
+      background:linear-gradient(90deg,var(--azul) 0%, var(--azul-2) 100%);
+      color:#fff;
+    }
+    .card-head h2{
+      margin:0;
+      font-size:20px;
+    }
+    .card-body{
+      padding:22px;
+    }
+    .field{
+      margin-bottom:14px;
+    }
+    .field label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:6px;
+      color:#334155;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+    .field input,.field select,.field textarea{
+      width:100%;
+      border:1px solid var(--borde);
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:14px;
+      outline:none;
+      background:#fff;
+    }
+    .field textarea{
+      min-height:104px;
+      resize:vertical;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    button{
+      border:none;
+      border-radius:14px;
+      padding:12px 18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--dorado),var(--dorado-2));
+      color:#111827;
+    }
+    .btn-secondary{
+      background:#e2e8f0;
+      color:#0f172a;
+    }
+    .btn-dark{
+      background:var(--azul);
+      color:#fff;
+    }
+    button:hover{transform:translateY(-1px)}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-bottom:18px;
+    }
+    .stat{
+      background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);
+      border:1px solid var(--borde);
+      border-radius:18px;
+      padding:18px;
+    }
+    .stat .label{
+      color:#64748b;
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+    .stat .value{
+      margin-top:8px;
+      font-size:30px;
+      font-weight:800;
+      color:var(--azul);
+    }
+    .toolbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+    }
+    .toolbar .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .toolbar input,.toolbar select{
+      border:1px solid var(--borde);
+      border-radius:12px;
+      padding:10px 12px;
+      min-width:180px;
+    }
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--borde);
+      border-radius:18px;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:1100px;
+      background:#fff;
+    }
+    thead th{
+      background:#f8fafc;
+      color:#0f172a;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+    th,td{
+      padding:12px 14px;
+      border-bottom:1px solid #eef2f7;
+      text-align:left;
+      vertical-align:middle;
+      font-size:14px;
+    }
+    tbody tr:hover{
+      background:#fafcff;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .estado-Prospecto{background:#dbeafe;color:#1d4ed8}
+    .estado-Contactado{background:#ede9fe;color:#6d28d9}
+    .estado-En\ propuesta{background:#fef3c7;color:#b45309}
+    .estado-Cerrado{background:#dcfce7;color:#15803d}
+    .estado-Descartado{background:#fee2e2;color:#b91c1c}
+    .urgencia-Alta{background:#fee2e2;color:#b91c1c}
+    .urgencia-Media{background:#fef3c7;color:#b45309}
+    .urgencia-Baja{background:#dcfce7;color:#15803d}
+    .empty{
+      text-align:center;
+      color:#64748b;
+      padding:34px 16px;
+    }
+    .foot{
+      margin-top:20px;
+      color:#64748b;
+      font-size:13px;
+    }
+    @media (max-width: 1100px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width: 700px){
+      .row{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <section class="hero">
-    <div>
-      <h1>CRM Minero PRO</h1>
-      <p>Captación comercial offline + exportación CSV + sincronización con Google Sheets.</p>
-    </div>
-    <div class="badge">IMPULSOWORK / ASEFORTMEC</div>
-  </section>
-
-  <div class="grid">
-    <section class="card">
-      <h2>Nuevo lead comercial</h2>
-      <div class="form-grid">
-        <div><label>Empresa</label><input id="empresa" /></div>
-        <div><label>RUT empresa</label><input id="rutEmpresa" /></div>
-        <div><label>Faena</label><input id="faena" /></div>
-        <div><label>Nombre contacto</label><input id="nombreContacto" /></div>
-        <div><label>Cargo</label><input id="cargo" /></div>
-        <div><label>Correo</label><input id="correo" type="email" /></div>
-        <div><label>Teléfono</label><input id="telefono" /></div>
-        <div><label>Servicio interés</label>
-          <select id="servicioInteres">
-            <option>Capacitación</option>
-            <option>Certificación</option>
-            <option>Simulador</option>
-            <option>Evaluación operacional</option>
-            <option>Auditoría de competencias</option>
-          </select>
-        </div>
-        <div><label>Equipo</label>
-          <select id="equipo">
-            <option>Boomer S1D</option>
-            <option>Simba S7D</option>
-            <option>Scoop ST1030</option>
-            <option>Jumbo DD421</option>
-            <option>Camión Tolva</option>
-          </select>
-        </div>
-        <div><label>Cantidad operadores</label><input id="cantidadOperadores" type="number" min="0" /></div>
-        <div><label>Origen contacto</label>
-          <select id="origenContacto">
-            <option>Web</option>
-            <option>Terreno</option>
-            <option>Referido</option>
-            <option>LinkedIn</option>
-            <option>Llamada directa</option>
-            <option>Email</option>
-            <option>Evento / Feria</option>
-          </select>
-        </div>
-        <div><label>Estado pipeline</label>
-          <select id="estadoPipeline">
-            <option>Prospecto</option>
-            <option>Contactado</option>
-            <option>Reunión agendada</option>
-            <option>Propuesta enviada</option>
-            <option>Negociación</option>
-            <option>Cerrado - Ganado</option>
-            <option>Cerrado - Perdido</option>
-          </select>
-        </div>
-        <div class="full"><label>Próxima acción</label><input id="proximaAccion" /></div>
-        <div><label>Fecha próxima acción</label><input id="fechaProximaAccion" type="date" /></div>
-        <div><label>Responsable</label>
-          <select id="responsable">
-            <option>Carlos Soto</option>
-            <option>Daniela Muñoz</option>
-            <option>Pamela Rojas</option>
-            <option>Rodrigo Pérez</option>
-          </select>
-        </div>
-        <div><label>Valor estimado CLP</label><input id="valorEstimado" type="number" min="0" step="1000" /></div>
-        <div><label>Probabilidad cierre (%)</label><input id="probabilidad" type="number" min="0" max="100" value="30" /></div>
-        <div class="full"><label>Observaciones</label><textarea id="observaciones"></textarea></div>
+  <div class="wrap">
+    <section class="hero">
+      <div class="brand">
+        <img src="assets/logo-impulsowork.jpeg" alt="ImpulsoWork Training">
       </div>
-
-      <div class="actions">
-        <button class="btn-primary" onclick="guardarLead()">Guardar lead</button>
-        <button class="btn-secondary" onclick="sincronizarPendientes()">Sincronizar pendientes</button>
-        <button class="btn-warning" onclick="exportarCSV()">Exportar CSV</button>
-        <button class="btn-dark" onclick="limpiarFormulario()">Limpiar</button>
+      <div>
+        <h1>CRM Comercial Minero - ImpulsoWork Training</h1>
+        <p>Sistema de captación y seguimiento de clientes con imagen corporativa OTEC, formulario profesional, panel comercial y base local exportable. Funciona en modo local y queda preparado para conectarse a Google Sheets mediante Apps Script.</p>
+        <div class="pillbox">
+          <span class="pill">Capacitación</span>
+          <span class="pill">Certificación</span>
+          <span class="pill">Cierre de brechas</span>
+          <span class="pill">Simulador</span>
+          <span class="pill">Consultoría minera</span>
+        </div>
       </div>
-      <p class="note">
-        Configura tu URL en la constante <b>APPS_SCRIPT_URL</b>. Si el navegador bloquea el envío al abrir el archivo como <b>file://</b>,
-        usa la exportación CSV o abre este HTML desde hosting simple (Drive, GitHub Pages, Netlify o Apps Script).
-      </p>
     </section>
 
-    <aside class="card">
-      <h2>Resumen local</h2>
-      <div class="kpis">
-        <div class="kpi"><small>Leads guardados</small><strong id="kpiTotal">0</strong></div>
-        <div class="kpi"><small>Pendientes de sync</small><strong id="kpiPendientes">0</strong></div>
-        <div class="kpi"><small>Pipeline local CLP</small><strong id="kpiPipeline">0</strong></div>
-        <div class="kpi"><small>Propuestas enviadas</small><strong id="kpiPropuestas">0</strong></div>
-      </div>
-      <div class="toolbar">
-        <select id="filtroEstado" onchange="renderTabla()">
-          <option value="">Todos los estados</option>
-          <option>Prospecto</option>
-          <option>Contactado</option>
-          <option>Reunión agendada</option>
-          <option>Propuesta enviada</option>
-          <option>Negociación</option>
-          <option>Cerrado - Ganado</option>
-          <option>Cerrado - Perdido</option>
-        </select>
-        <input id="buscarTexto" placeholder="Buscar empresa / contacto / faena" oninput="renderTabla()" />
-      </div>
-      <p class="note">Los leads quedan guardados en tu navegador hasta que decidas sincronizar o exportar.</p>
-    </aside>
+    <section class="grid">
+      <article class="card">
+        <div class="card-head"><h2>Ingreso de cliente</h2></div>
+        <div class="card-body">
+          <form id="crmForm">
+            <div class="field"><label>Empresa</label><input name="empresa" required></div>
+            <div class="row">
+              <div class="field"><label>Nombre contacto</label><input name="contacto" required></div>
+              <div class="field"><label>Cargo</label><input name="cargo"></div>
+            </div>
+            <div class="row">
+              <div class="field"><label>Teléfono</label><input name="telefono"></div>
+              <div class="field"><label>Email</label><input name="email" type="email"></div>
+            </div>
+            <div class="row">
+              <div class="field"><label>Faena / ubicación</label><input name="faena"></div>
+              <div class="field"><label>Cantidad operadores</label><input name="operadores" type="number" min="0"></div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label>Servicio</label>
+                <select name="servicio">
+                  <option>Capacitación</option>
+                  <option>Certificación</option>
+                  <option>Cierre de brechas</option>
+                  <option>Simulador</option>
+                  <option>Consultoría minera</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Urgencia</label>
+                <select name="urgencia">
+                  <option>Alta</option>
+                  <option selected>Media</option>
+                  <option>Baja</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="field"><label>Equipos</label><input name="equipos" placeholder="Boomer S1D, Simba S7D, Scoop ST1030..."></div>
+              <div class="field">
+                <label>Estado comercial</label>
+                <select name="estado">
+                  <option selected>Prospecto</option>
+                  <option>Contactado</option>
+                  <option>En propuesta</option>
+                  <option>Cerrado</option>
+                  <option>Descartado</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="field"><label>Responsable</label><input name="responsable" placeholder="Completar"></div>
+              <div class="field"><label>Próxima gestión</label><input name="proximaGestion" type="date"></div>
+            </div>
+            <div class="field"><label>Observaciones</label><textarea name="observaciones" placeholder="Necesidad del mandante, equipos, número de operadores, observaciones comerciales..."></textarea></div>
+            <div class="actions">
+              <button class="btn-primary" type="submit">Guardar cliente</button>
+              <button class="btn-secondary" type="button" id="btnExport">Exportar JSON</button>
+              <button class="btn-dark" type="button" id="btnSeed">Cargar demo</button>
+            </div>
+          </form>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h2>Pipeline comercial</h2></div>
+        <div class="card-body">
+          <div class="stats">
+            <div class="stat"><div class="label">Total leads</div><div class="value" id="kpiTotal">0</div></div>
+            <div class="stat"><div class="label">Prospectos</div><div class="value" id="kpiProspecto">0</div></div>
+            <div class="stat"><div class="label">En propuesta</div><div class="value" id="kpiPropuesta">0</div></div>
+            <div class="stat"><div class="label">Cerrados</div><div class="value" id="kpiCerrado">0</div></div>
+          </div>
+
+          <div class="toolbar">
+            <div class="filters">
+              <input id="searchInput" placeholder="Buscar empresa, contacto, equipo o correo">
+              <select id="filterEstado">
+                <option value="">Todos los estados</option>
+                <option>Prospecto</option>
+                <option>Contactado</option>
+                <option>En propuesta</option>
+                <option>Cerrado</option>
+                <option>Descartado</option>
+              </select>
+              <select id="filterServicio">
+                <option value="">Todos los servicios</option>
+                <option>Capacitación</option>
+                <option>Certificación</option>
+                <option>Cierre de brechas</option>
+                <option>Simulador</option>
+                <option>Consultoría minera</option>
+              </select>
+            </div>
+            <button class="btn-secondary" type="button" id="btnClear">Limpiar filtros</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Fecha</th>
+                  <th>Empresa</th>
+                  <th>Contacto</th>
+                  <th>Servicio</th>
+                  <th>Equipos</th>
+                  <th>Operadores</th>
+                  <th>Urgencia</th>
+                  <th>Estado</th>
+                  <th>Responsable</th>
+                  <th>Próxima gestión</th>
+                </tr>
+              </thead>
+              <tbody id="crmTable"></tbody>
+            </table>
+          </div>
+          <div class="foot">Base local guardada en el navegador. Para sincronizar con Google Sheets, edita la constante <strong>APPS_SCRIPT_URL</strong> dentro del archivo y publica tu Apps Script como aplicación web.</div>
+        </div>
+      </article>
+    </section>
   </div>
 
-  <section class="card" style="margin-top:18px">
-    <h2>Base local de captación</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Fecha</th>
-            <th>Empresa</th>
-            <th>Faena</th>
-            <th>Contacto</th>
-            <th>Servicio</th>
-            <th>Estado</th>
-            <th>Responsable</th>
-            <th>Valor</th>
-            <th>Sync</th>
-          </tr>
-        </thead>
-        <tbody id="tablaLeads"></tbody>
-      </table>
-    </div>
-  </section>
-</div>
+  <script>
+    const STORAGE_KEY = "impulsowork_crm_clientes_v1";
+    const APPS_SCRIPT_URL = ""; // pegar aquí la URL del Apps Script desplegado
+    let clientes = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
 
-<script>
-const STORAGE_KEY = "crm_minero_pro_leads";
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvc_5ct5CAxOXQR-q-clTkLg3OxjMZgw0gdsaSxHO-VXsEAnt9o_WUtuq1uR4-xaC56Q/exec";
+    const form = document.getElementById("crmForm");
+    const tbody = document.getElementById("crmTable");
+    const searchInput = document.getElementById("searchInput");
+    const filterEstado = document.getElementById("filterEstado");
+    const filterServicio = document.getElementById("filterServicio");
 
-function obtenerLeads(){
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-}
-function guardarLeads(leads){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
-}
-
-function normalizarEstadoClase(estado){
-  const map = {
-    "Prospecto":"s-prospecto",
-    "Contactado":"s-contactado",
-    "Reunión agendada":"s-reunion",
-    "Propuesta enviada":"s-propuesta",
-    "Negociación":"s-negociacion",
-    "Cerrado - Ganado":"s-ganado",
-    "Cerrado - Perdido":"s-perdido"
-  };
-  return map[estado] || "s-prospecto";
-}
-
-function generarId(){
-  const leads = obtenerLeads();
-  return "LOC-" + String(leads.length + 1).padStart(4, "0");
-}
-
-function limpiarFormulario(){
-  document.querySelectorAll("input, textarea").forEach(el => {
-    if(el.type !== "date" && el.type !== "number" && el.type !== "email") el.value = "";
-  });
-  document.getElementById("cantidadOperadores").value = "";
-  document.getElementById("valorEstimado").value = "";
-  document.getElementById("probabilidad").value = "30";
-  document.getElementById("fechaProximaAccion").value = "";
-  document.getElementById("observaciones").value = "";
-}
-
-function guardarLead(){
-  const lead = {
-    idLocal: generarId(),
-    fechaIngreso: new Date().toISOString().slice(0,10),
-    empresa: empresa.value.trim(),
-    rutEmpresa: rutEmpresa.value.trim(),
-    faena: faena.value.trim(),
-    nombreContacto: nombreContacto.value.trim(),
-    cargo: cargo.value.trim(),
-    correo: correo.value.trim(),
-    telefono: telefono.value.trim(),
-    servicioInteres: servicioInteres.value,
-    equipo: equipo.value,
-    cantidadOperadores: Number(cantidadOperadores.value || 0),
-    origenContacto: origenContacto.value,
-    estadoPipeline: estadoPipeline.value,
-    proximaAccion: proximaAccion.value.trim(),
-    fechaProximaAccion: fechaProximaAccion.value,
-    observaciones: observaciones.value.trim(),
-    responsable: responsable.value,
-    valorEstimadoCLP: Number(valorEstimado.value || 0),
-    probabilidadCierre: Number(probabilidad.value || 0) / 100,
-    synced: false,
-    syncedAt: ""
-  };
-
-  if(!lead.empresa || !lead.nombreContacto){
-    alert("Completa al menos Empresa y Nombre contacto.");
-    return;
-  }
-
-  const leads = obtenerLeads();
-  leads.unshift(lead);
-  guardarLeads(leads);
-  limpiarFormulario();
-  renderKPIs();
-  renderTabla();
-  alert("Lead guardado localmente.");
-}
-
-async function sincronizarPendientes(){
-  if(!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("PEGAR_AQUI")){
-    alert("Primero debes configurar APPS_SCRIPT_URL dentro del archivo HTML.");
-    return;
-  }
-
-  const leads = obtenerLeads();
-  const pendientes = leads.filter(x => !x.synced);
-
-  if(!pendientes.length){
-    alert("No hay leads pendientes por sincronizar.");
-    return;
-  }
-
-  let ok = 0;
-  for(const lead of pendientes){
-    try{
-      await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        headers: {"Content-Type":"text/plain;charset=utf-8"},
-        body: JSON.stringify(lead)
-      });
-      lead.synced = true;
-      lead.syncedAt = new Date().toISOString();
-      ok++;
-    }catch(err){
-      console.error("Error de sync", err);
+    function nextId(){
+      if(!clientes.length) return 1;
+      return Math.max(...clientes.map(x => Number(x.id) || 0)) + 1;
     }
-  }
 
-  guardarLeads(leads);
-  renderKPIs();
-  renderTabla();
-  alert("Sincronizados: " + ok + " lead(s). Si ves 0, exporta CSV o revisa CORS / hosting.");
-}
+    function saveLocal(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(clientes));
+    }
 
-function exportarCSV(){
-  const leads = obtenerLeads();
-  if(!leads.length){
-    alert("No hay datos para exportar.");
-    return;
-  }
+    function badgeClass(prefix, value){
+      return `${prefix}-${String(value).replaceAll(" ", "\\ ")}`;
+    }
 
-  const headers = [
-    "idLocal","fechaIngreso","empresa","rutEmpresa","faena","nombreContacto","cargo","correo","telefono",
-    "servicioInteres","equipo","cantidadOperadores","origenContacto","estadoPipeline","proximaAccion",
-    "fechaProximaAccion","observaciones","responsable","valorEstimadoCLP","probabilidadCierre","synced","syncedAt"
-  ];
+    function renderKPIs(data){
+      document.getElementById("kpiTotal").textContent = data.length;
+      document.getElementById("kpiProspecto").textContent = data.filter(x => x.estado === "Prospecto").length;
+      document.getElementById("kpiPropuesta").textContent = data.filter(x => x.estado === "En propuesta").length;
+      document.getElementById("kpiCerrado").textContent = data.filter(x => x.estado === "Cerrado").length;
+    }
 
-  const rows = [headers.join(",")];
-  leads.forEach(l => {
-    rows.push(headers.map(h => `"${String(l[h] ?? "").replaceAll('"','""')}"`).join(","));
-  });
+    function filteredData(){
+      const q = searchInput.value.trim().toLowerCase();
+      const estado = filterEstado.value;
+      const servicio = filterServicio.value;
+      return clientes.filter(item => {
+        const hayTexto = !q || [item.empresa,item.contacto,item.equipos,item.email,item.faena,item.servicio].join(" ").toLowerCase().includes(q);
+        const hayEstado = !estado || item.estado === estado;
+        const hayServicio = !servicio || item.servicio === servicio;
+        return hayTexto && hayEstado && hayServicio;
+      }).sort((a,b) => Number(b.id) - Number(a.id));
+    }
 
-  const blob = new Blob([rows.join("\n")], {type:"text/csv;charset=utf-8;"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "crm_minero_pro_leads.csv";
-  a.click();
-  URL.revokeObjectURL(url);
-}
+    function renderTable(){
+      const data = filteredData();
+      renderKPIs(data);
+      if(!data.length){
+        tbody.innerHTML = `<tr><td colspan="11" class="empty">No hay registros para los filtros seleccionados.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = data.map(item => `
+        <tr>
+          <td>${item.id}</td>
+          <td>${item.fecha || ""}</td>
+          <td>${item.empresa || ""}</td>
+          <td>${item.contacto || ""}</td>
+          <td>${item.servicio || ""}</td>
+          <td>${item.equipos || ""}</td>
+          <td>${item.operadores || ""}</td>
+          <td><span class="badge ${badgeClass("urgencia", item.urgencia)}">${item.urgencia || ""}</span></td>
+          <td><span class="badge ${badgeClass("estado", item.estado)}">${item.estado || ""}</span></td>
+          <td>${item.responsable || ""}</td>
+          <td>${item.proximaGestion || ""}</td>
+        </tr>
+      `).join("");
+    }
 
-function formatoCLP(n){
-  return new Intl.NumberFormat("es-CL").format(Number(n || 0));
-}
+    async function syncToSheets(payload){
+      if(!APPS_SCRIPT_URL) return;
+      try{
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(payload)
+        });
+      }catch(error){
+        console.warn("No se pudo sincronizar con Google Sheets:", error);
+      }
+    }
 
-function renderKPIs(){
-  const leads = obtenerLeads();
-  const pendientes = leads.filter(x => !x.synced).length;
-  const pipeline = leads.reduce((acc,x) => acc + Number(x.valorEstimadoCLP || 0), 0);
-  const propuestas = leads.filter(x => x.estadoPipeline === "Propuesta enviada").length;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const payload = {
+        id: nextId(),
+        fecha: new Date().toISOString().slice(0,10),
+        empresa: data.empresa || "",
+        contacto: data.contacto || "",
+        cargo: data.cargo || "",
+        telefono: data.telefono || "",
+        email: data.email || "",
+        faena: data.faena || "",
+        servicio: data.servicio || "",
+        equipos: data.equipos || "",
+        operadores: data.operadores || "",
+        urgencia: data.urgencia || "",
+        estado: data.estado || "",
+        responsable: data.responsable || "",
+        proximaGestion: data.proximaGestion || "",
+        observaciones: data.observaciones || ""
+      };
+      clientes.push(payload);
+      saveLocal();
+      renderTable();
+      await syncToSheets(payload);
+      form.reset();
+      alert("Cliente guardado correctamente.");
+    });
 
-  kpiTotal.textContent = leads.length;
-  kpiPendientes.textContent = pendientes;
-  kpiPipeline.textContent = formatoCLP(pipeline);
-  kpiPropuestas.textContent = propuestas;
-}
+    document.getElementById("btnExport").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(clientes, null, 2)], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "crm-impulsowork-clientes.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
 
-function renderTabla(){
-  const estado = document.getElementById("filtroEstado").value;
-  const texto = (document.getElementById("buscarTexto").value || "").toLowerCase();
-  let leads = obtenerLeads();
+    document.getElementById("btnSeed").addEventListener("click", () => {
+      const demo = [
+        {id:1,fecha:"2026-04-21",empresa:"Minera Ejemplo",contacto:"Carlos Soto",cargo:"Superintendente",telefono:"+56 9 1111 1111",email:"carlos@minera.cl",faena:"Rancagua",servicio:"Capacitación",equipos:"Boomer S1D / Simba S7D",operadores:24,urgencia:"Alta",estado:"Prospecto",responsable:"",proximaGestion:"2026-04-28",observaciones:"Necesitan propuesta técnica y económica."},
+        {id:2,fecha:"2026-04-21",empresa:"Constructora Tunel",contacto:"María Rojas",cargo:"Jefa de Contrato",telefono:"+56 9 2222 2222",email:"maria@tunel.cl",faena:"VI Región",servicio:"Certificación",equipos:"Scoop ST1030",operadores:10,urgencia:"Media",estado:"En propuesta",responsable:"",proximaGestion:"2026-04-30",observaciones:"Requieren certificación y cierre de brechas."}
+      ];
+      clientes = demo;
+      saveLocal();
+      renderTable();
+    });
 
-  if(estado) leads = leads.filter(x => x.estadoPipeline === estado);
-  if(texto){
-    leads = leads.filter(x =>
-      [x.empresa, x.nombreContacto, x.faena, x.responsable].join(" ").toLowerCase().includes(texto)
-    );
-  }
+    document.getElementById("btnClear").addEventListener("click", () => {
+      searchInput.value = "";
+      filterEstado.value = "";
+      filterServicio.value = "";
+      renderTable();
+    });
 
-  tablaLeads.innerHTML = leads.map(l => `
-    <tr>
-      <td>${l.idLocal}</td>
-      <td>${l.fechaIngreso || ""}</td>
-      <td>${l.empresa || ""}</td>
-      <td>${l.faena || ""}</td>
-      <td>${l.nombreContacto || ""}</td>
-      <td>${l.servicioInteres || ""}</td>
-      <td><span class="status-pill ${normalizarEstadoClase(l.estadoPipeline)}">${l.estadoPipeline || ""}</span></td>
-      <td>${l.responsable || ""}</td>
-      <td>${formatoCLP(l.valorEstimadoCLP)}</td>
-      <td>${l.synced ? "✅" : "⏳"}</td>
-    </tr>
-  `).join("");
-}
-
-renderKPIs();
-renderTabla();
-</script>
+    [searchInput, filterEstado, filterServicio].forEach(el => el.addEventListener("input", renderTable));
+    renderTable();
+  </script>
 </body>
 </html>
